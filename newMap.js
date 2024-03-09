@@ -69,7 +69,7 @@ async function plotPoints() {
         .attr('cx', d => projection([d.long, d.lat])[0]) 
         .attr('cy', d => projection([d.long, d.lat])[1]) 
         .attr('r', 5)
-        .style('fill', 'red'); 
+        .style('fill', 'blue'); 
 
 
     c.each(function(){
@@ -77,26 +77,26 @@ async function plotPoints() {
     })
     
     // for each point
-    for (let i = 0; i < data.length; i++){
+    // for (let i = 0; i < data.length; i++){
         
-        // determine num of connections
-        var lines =  Math.floor(Math.random() * 2);
+    //     // determine num of connections
+    //     var lines =  Math.floor(Math.random() * 2);
        
-        for (let index = 0; index < lines; index++) {
+    //     for (let index = 0; index < lines; index++) {
 
-            var target = Math.floor(Math.random()*data.length);
+    //         var target = Math.floor(Math.random()*data.length);
 
-            svg.selectAll(".line")
-            .data(data)
-            .enter()
-            .append("line")
-            .attr("x1", () => projection([data[i].long, data[i].lat])[0])
-            .attr("y1", () => projection([data[i].long, data[i].lat])[1])
-            .attr("x2", () => projection([data[target].long, data[target].lat])[0])
-            .attr("y2", () => projection([data[target].long, data[target].lat])[1])
-            .style('stroke', 'blue')
-            .style('stroke-width', .5);        }
-    }
+    //         svg.selectAll(".line")
+    //         .data(data)
+    //         .enter()
+    //         .append("line")
+    //         .attr("x1", () => projection([data[i].long, data[i].lat])[0])
+    //         .attr("y1", () => projection([data[i].long, data[i].lat])[1])
+    //         .attr("x2", () => projection([data[target].long, data[target].lat])[0])
+    //         .attr("y2", () => projection([data[target].long, data[target].lat])[1])
+    //         .style('stroke', 'blue')
+    //         .style('stroke-width', .5);        }
+    // }
 
 
     //determine target fr each line

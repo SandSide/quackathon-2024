@@ -61,7 +61,7 @@ function changeCurrentNode(newNode, possibleMoves){
 
     d3.select(newNode)
         .style('fill', 'red')
-        .attr('r', 10)
+       // .attr('r', 10)
         .attr('z', -10);
     
     if(currNode != null)
@@ -86,7 +86,7 @@ function clearOldPossibleMoves(moves){
                 else
                     return 'orange'
             })
-            .attr('r', 5)
+            //.attr('r', 5)
             .attr('z', -10)
             .on('click', null);
     }
@@ -118,7 +118,7 @@ function infect(node){
                 d.state = 'infected';
                 return 'orange';
             })
-            .attr('r', 5)
+           // .attr('r', 5)
             .attr('z', -10);
 
         score += nodeData.atmNum;

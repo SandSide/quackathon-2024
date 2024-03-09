@@ -5,6 +5,8 @@ const scale = 4000;
 
 let projection;
 
+var nodes = []
+
 // Display map
 function displayMap() {
 
@@ -25,7 +27,7 @@ function drawMap(map) {
 
     // Set projection
     projection = d3.geoMercator()
-        .center([-2, 56])
+        .center([-2, 55])
         .scale(scale);
 
     // Create map container
@@ -58,8 +60,6 @@ async function plotPoints() {
 
     var svg = d3.select('#map');
 
-// console.log('hello')
-
     // Plot points
     var c = svg.selectAll('.point')
         .data(data)
@@ -70,18 +70,22 @@ async function plotPoints() {
         .attr('cy', d => projection([d.long, d.lat])[1]) 
         .attr('r', 5)
         .style('fill', 'red'); 
-    
-    //ffor each point
-    for (let i = 0; i < data.length; i++){
-        // 0 and 3 lines
-        var lines =  Math.floor(Math.random()*3);
-       
 
+
+    c.each(function(){
+        nodes.push(this);
+    })
+    
+    // for each point
+    for (let i = 0; i < data.length; i++){
+        
+        // determine num of connections
+        var lines =  Math.floor(Math.random() * 2);
+       
         for (let index = 0; index < lines; index++) {
 
-            console.log("draw");
             var target = Math.floor(Math.random()*data.length);
-            console.log(target);
+
             svg.selectAll(".line")
             .data(data)
             .enter()
@@ -91,11 +95,10 @@ async function plotPoints() {
             .attr("x2", () => projection([data[target].long, data[target].lat])[0])
             .attr("y2", () => projection([data[target].long, data[target].lat])[1])
             .style('stroke', 'blue')
-            .style('stroke-width', 1);
-            //console.log(target);
-        }
+            .style('stroke-width', .5);        }
     }
-    
+
+
     //determine target fr each line
     //draw line
     
@@ -104,7 +107,7 @@ async function plotPoints() {
 
 
 window.onload = function () {
-    displayMap();
-    plotPoints();
+    // displayMap();
+    // plotPoints();
 };
 

@@ -42,7 +42,7 @@ async function transformData(){
     }));
 
 
-    console.log(atmCityArray)
+    // console.log(atmCityArray)
     return atmCityArray;
 }
 

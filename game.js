@@ -1,4 +1,5 @@
 var currNode;
+var score = 0;
 
 window.onload = async () => {
 
@@ -53,22 +54,10 @@ function showPossibleMoves(moves){
 
 function changeCurrentNode(newNode, possibleMoves){
 
-    if(possibleMoves != null){
+    if(currNode != null)
+        possibleMoves.push(currNode)
 
-        if(currNode != null)
-            possibleMoves.push(currNode)
-
-        d3.selectAll(possibleMoves)
-            .style('fill', d => {
-
-                if(d.state != 'infected')
-                    return 'blue';
-                else
-                    return 'orange'
-            })
-            .attr('r', 5)
-            .attr('z', -10);
-    }
+    clearOldPossibleMoves(possibleMoves);
 
     d3.select(newNode)
         .style('fill', 'red')
@@ -78,9 +67,29 @@ function changeCurrentNode(newNode, possibleMoves){
     if(currNode != null)
         infect(currNode);
     
-        currNode = newNode;
+
+   // if(d3.select(newNode).datum();
+
+    currNode = newNode;
     var possibleMoves = determinePossibleMoves(currNode);
     showPossibleMoves(possibleMoves);
+}
+
+function clearOldPossibleMoves(moves){
+    if(moves != null){
+
+        d3.selectAll(moves)
+            .style('fill', d => {
+
+                if(d.state != 'infected')
+                    return 'blue';
+                else
+                    return 'orange'
+            })
+            .attr('r', 5)
+            .attr('z', -10)
+            .on('click', null);
+    }
 }
 
 

@@ -58,8 +58,6 @@ async function plotPoints() {
 
     var svg = d3.select('#map');
 
-// console.log('hello')
-
     // Plot points
     var c = svg.selectAll('.point')
         .data(data)
@@ -70,7 +68,6 @@ async function plotPoints() {
         .attr('cy', d => projection([d.long, d.lat])[1]) 
         .attr('r', 5)
         .style('fill', 'red')
-        .attr('I', true);
     
     //ffor each point
     for (let i = 0; i < data.length; i++){
@@ -80,9 +77,7 @@ async function plotPoints() {
 
         for (let index = 0; index < lines; index++) {
 
-            console.log("draw");
             var target = Math.floor(Math.random()*data.length);
-            console.log(target);
             svg.selectAll(".line")
             .data(data)
             .enter()
@@ -94,11 +89,7 @@ async function plotPoints() {
             .style('stroke', 'blue')
             .style('stroke-width', 1);
         }
-    }
-    
-    //determine target fr each line
-    //draw line
-    
+    }  
     }
 
 

@@ -11,9 +11,29 @@ window.onload = async () => {
     d3.select(currNode)
     .style('fill', 'red')
     .attr('r', 10)
-    .attr('z', -10); 
+    .attr('z', -10);
+       
+    var possibleMoves = determinePossibleMoves(currNode);
+
+    d3.selectAll(possibleMoves)
+    .style('fill', 'yellow')
+    .on('click', (event) => {
+
+        d3.select(event.target)
+        .style('fill', 'red')
+        .attr('r', 10)
+
+    }) 
+
+}
+
+
+
+function determinePossibleMoves(currNode){
 
     var maxDist = 10;
+
+    var possibleMoves = []
 
     for (let i = 0; i < nodes.length; i++) {
         
@@ -28,15 +48,12 @@ window.onload = async () => {
             var c = Math.sqrt(a*a + b*b)
 
             if(c < 1){
-
-                d3.select(nodes[i])
-                .style('fill', 'yellow'); 
-
-                //drawLine(currData)
+                possibleMoves.push(nodes[i])
             }
-
         }   
     }
+
+    return possibleMoves;
 }
 
 function drawLine(a,b){

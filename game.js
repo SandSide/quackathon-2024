@@ -120,6 +120,9 @@ function infect(node){
             })
             .attr('r', 5)
             .attr('z', -10);
+
+        score += nodeData.atmNum;
+        console.log('Score: ' + score)
     }
 
 }

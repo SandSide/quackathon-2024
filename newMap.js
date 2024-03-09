@@ -58,6 +58,10 @@ async function plotPoints() {
 
     var data = await transformData();
 
+    data.forEach(d => {
+        d.state = "normal";
+    });
+
     var svg = d3.select('#map');
 
     // Plot points

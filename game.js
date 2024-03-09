@@ -23,8 +23,8 @@ function determinePossibleMoves(currNode){
             var targetData = d3.select(nodes[i]).datum();
             var currData = d3.select(currNode).datum();
 
-            var a = currData.lat - targetData.lat;
-            var b = currData.long - targetData.long;
+            var a = Math.abs(currData.lat - targetData.lat);
+            var b = Math.abs(currData.long - targetData.long);
 
             var c = Math.sqrt(a*a + b*b)
 

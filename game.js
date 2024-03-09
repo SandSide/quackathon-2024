@@ -1,4 +1,4 @@
-@ -1,69 +0,0 @@
+
 window.onload = async () => {
 
     displayMap()

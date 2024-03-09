@@ -15,27 +15,36 @@ async function transformData(){
 
     var atms = await getData();
 
-    var atmsPure = []
-
+    var atmCity = {}
 
     for (let i = 0; i < atms.length; i++) {
-        
-        console.log(atms[i]['Location']['GeoLocation'])
-
+    
         var city = atms[i]['Location']['PostalAddress']['TownName'];
         var lat = atms[i]['Location']['PostalAddress']['GeoLocation']['GeographicCoordinates']['Latitude'];
         var lang = atms[i]['Location']['PostalAddress']['GeoLocation']['GeographicCoordinates']['Longitude'];
 
-        atmsPure.push([city, lat, lang])    
+        // Check if city already exists
+        if(!atmCity.hasOwnProperty(city)){
+            atmCity[city] = [1,lat, lang];
+        }
+        else{
+            // Increase num of atms in the city
+            atmCity[city] = [atmCity[city][0] + 1, lat, lang];
+        }
+
     }
 
-    console.log(atmsPure)
+    // Convert the atmCity object to an array
+    var atmCityArray = Object.entries(atmCity).map(([city, data]) => ({
+        city: city,
+        atmNum: data[0],
+        lat: data[1],
+        lang: data[2],
+    }));
 
-    
+
+    console.log(atmCityArray)
 
 }
 
 transformData();
-
-// Aggregate all atms into based on city
-

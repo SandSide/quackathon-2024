@@ -24,7 +24,7 @@ async function transformData(){
 
         // Check if city already exists
         if(!atmCity.hasOwnProperty(city)){
-            atmCity[city] = [1,lat, lang];
+            atmCity[city] = [1, lat, lang];
         }
         else{
             // Increase num of atms in the city
@@ -42,6 +42,8 @@ async function transformData(){
     }));
 
 
-    // console.log(atmCityArray)
+    console.log(atmCityArray)
     return atmCityArray;
 }
+
+// transformData();

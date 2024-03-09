@@ -12,14 +12,16 @@ point.fillStyle = "red";
 async function plotPoints()
 {
     var data = await transformData();
-
-    console.log(data)
   
     for  (var i = 0; i < data.length - 2; i++)
     {
-        console.log(data[i])
-        point.fillRect(data[i]["lat"], data[i]["long"], 10, 10)
+        console.log(data[i]['lat'])
+        point.fillRect((data[i]["lat"] - 50 + 3) * 100,  data[i]["long"] * 500 + 100, 10, 10)
     }
 }
+
+// function toGridPos(lat, lang){
+//     return [lat * 100], 
+// }
 
 plotPoints();

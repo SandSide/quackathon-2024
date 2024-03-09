@@ -11,16 +11,14 @@ point.fillStyle = "red";
 
 async function plotPoints()
 {
-  var data = await transformData();
+    var data = await transformData();
 
-  console.log(data)
+    console.log(data)
   
-  for  (var i = 0; i < data.length - 2; i++)
+    for  (var i = 0; i < data.length - 2; i++)
     {
-      //console.log(i)
-     console.log(data[i])
-
-      point.fillRect(data[i]["lat"], data[i]["long"], 10, 10)
+        console.log(data[i])
+        point.fillRect(data[i]["lat"], data[i]["long"], 10, 10)
     }
 }
 

@@ -89,7 +89,7 @@ async function plotPoints() {
             .style('stroke', 'blue')
             .style('stroke-width', 1);
         }
-    }  
+        }  
     }
 
 

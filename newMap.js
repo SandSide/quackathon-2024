@@ -47,6 +47,8 @@ function drawMap(map) {
         .attr('class', 'country')
         .attr('d', path);
 
+
+
 }
 
 // Plot towns onto the map
@@ -56,7 +58,7 @@ async function plotPoints() {
 
     var svg = d3.select('#map');
 
-console.log('hello')
+    console.log('hello')
 
     // Plot points
     var c = svg.selectAll('.point')
@@ -68,7 +70,9 @@ console.log('hello')
         .attr('cy', d => projection([d.long, d.lat])[1]) 
         .attr('r', 5)
         .style('fill', 'red'); 
-    }
+
+        
+}
 
 window.onload = function () {
     displayMap();

@@ -47,6 +47,8 @@ function drawMap(map) {
         .attr('class', 'country')
         .attr('d', path);
 
+
+
 }
 
 // Plot towns onto the map

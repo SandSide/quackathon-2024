@@ -67,7 +67,8 @@ async function plotPoints() {
         .attr('cx', d => projection([d.long, d.lat])[0]) 
         .attr('cy', d => projection([d.long, d.lat])[1]) 
         .attr('r', 5)
-        .style('fill', 'red'); 
+        .style('fill', 'red')
+        .attr('I', true);
     
     //ffor each point
     for (let i = 0; i < data.length; i++){
@@ -90,7 +91,6 @@ async function plotPoints() {
             .attr("y2", () => projection([data[target].long, data[target].lat])[1])
             .style('stroke', 'blue')
             .style('stroke-width', 1);
-            //console.log(target);
         }
     }
     

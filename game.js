@@ -1,37 +1,18 @@
+var currNode;
+
 window.onload = async () => {
 
     displayMap()
     await plotPoints();
 
-    // Determine start node
-
-    var currIndex 
-    var currNode = nodes[Math.floor(Math.random() * nodes.length)]
-
-    d3.select(currNode)
-    .style('fill', 'red')
-    .attr('r', 10)
-    .attr('z', -10);
-       
-    var possibleMoves = determinePossibleMoves(currNode);
-
-    d3.selectAll(possibleMoves)
-    .style('fill', 'yellow')
-    .on('click', (event) => {
-
-        d3.select(event.target)
-        .style('fill', 'red')
-        .attr('r', 10)
-
-    }) 
-
+    var startNode = nodes[Math.floor(Math.random() * nodes.length)]
+    changeCurrentNode(startNode, null);
 }
-
 
 
 function determinePossibleMoves(currNode){
 
-    var maxDist = 10;
+    var maxDist = .75;
 
     var possibleMoves = []
 
@@ -47,7 +28,7 @@ function determinePossibleMoves(currNode){
 
             var c = Math.sqrt(a*a + b*b)
 
-            if(c < 1){
+            if(c <= maxDist){
                 possibleMoves.push(nodes[i])
             }
         }   
@@ -55,6 +36,38 @@ function determinePossibleMoves(currNode){
 
     return possibleMoves;
 }
+
+function showPossibleMoves(moves){
+    
+    d3.selectAll(moves)
+    .style('fill', 'yellow')
+    .on('click', (event) => {
+        changeCurrentNode(event.target, moves);
+    }) 
+}
+
+function changeCurrentNode(newNode, possibleMoves){
+
+    if(currNode != null)
+        possibleMoves.push(currNode)
+
+    if(possibleMoves != null){
+        d3.selectAll(possibleMoves)
+        .style('fill', 'blue')
+        .attr('r', 5)
+        .attr('z', -10);
+    }
+
+    d3.select(newNode)
+        .style('fill', 'red')
+        .attr('r', 10)
+        .attr('z', -10);
+
+    currNode = newNode;
+    var possibleMoves = determinePossibleMoves(currNode);
+    showPossibleMoves(possibleMoves);
+}
+
 
 function drawLine(a,b){
 

@@ -1,0 +1,9 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+#canvas {
+  background-image: url("istockphoto-1255442357-612x612.jpg");
+  background-size: cover;
+}

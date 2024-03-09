@@ -121,10 +121,15 @@ function infect(node){
            // .attr('r', 5)
             .attr('z', -10);
 
-        score += nodeData.atmNum;
-        console.log('Score: ' + score)
+        updateScore(nodeData);
     }
 
+}
+
+function updateScore(node){
+    score += node.atmNum;
+    console.log('Score: ' + score)
+    document.getElementById('score').innerHTML = "Score: " + score;
 }
 
 

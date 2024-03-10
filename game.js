@@ -109,6 +109,14 @@ function infect(node){
 
 function updateScore(amount){
     score += amount;
-    console.log('Score: ' + score)
+    console.log('Score: ' + score);
+
+    if (enemyNodes.length - 10 < score / 25){
+        enemyStepSize += .1;
+        addEnemy();
+        console.log("enemies = " + enemyNodes.length)
+    }
+        
+
     document.getElementById('score').innerHTML = "Score: " + score;
 }

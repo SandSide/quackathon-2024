@@ -1,4 +1,6 @@
 var enemyNodes = []
+var enemyStepSize = 0.5;
+
 
 function addEnemy(){
 
@@ -29,7 +31,7 @@ async function enemyTurn(){
 
     enemyNodes.forEach(enemy => {
 
-        var possibleMoves = determinePossibleMoves(enemy, 0.5);
+        var possibleMoves = determinePossibleMoves(enemy, enemyStepSize);
 
         var target;
 

@@ -38,8 +38,10 @@ function showPossibleMoves(moves){
             else
                 return '#e84393'
         })
-        .on('click', (event) => {
-            movePlayer(event.target, moves);
+        .on('click', (event,d) => {
+
+            if(d.state != 'enemy')
+                movePlayer(event.target, moves);
         })
 }
 

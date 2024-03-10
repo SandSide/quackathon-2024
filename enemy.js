@@ -61,6 +61,10 @@ function enemyMove(enemy, target){
 
     if(target == currNode){
         console.log("Game Over");
+        var element = document.getElementById("game-over");
+        element.hidden = false;
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("game-over-score").innerHTML = score;
     }
 
     purify(target);
@@ -89,13 +93,6 @@ function purify(node){
     if(nodeData.state == 'infected'){
 
         console.log('purify atm')
-
-        // d3.select(node)
-        //     .datum(d => {
-        //         d.state = 'enemy';
-        //         return d;
-        //     })
-
         updateScore(-nodeData.atmNum);
     }
 

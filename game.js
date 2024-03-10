@@ -10,8 +10,7 @@ window.onload = async () => {
     changeCurrentNode(startNode, null);
 
     for (let i = 0; i < 10; i++) {
-        addEnemy();
-        
+        addEnemy();   
     }
 
     enemyAction();
@@ -20,7 +19,7 @@ window.onload = async () => {
 
 function determinePossibleMoves(node){
 
-    var maxDist = 2;
+    var maxDist = 1;
 
     var possibleMoves = []
 

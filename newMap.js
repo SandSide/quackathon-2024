@@ -1,7 +1,7 @@
 // Map params
-const width = 1200;
-const height = 900;
-const scale = 4000;
+const width = 2200;
+const height = 2000;
+const scale = 8000;
 
 let projection;
 
@@ -27,7 +27,7 @@ function drawMap(map) {
 
     // Set projection
     projection = d3.geoMercator()
-        .center([-2, 55])
+        .center([-6, 57])
         .scale(scale);
 
     // Create map container
@@ -80,44 +80,12 @@ async function plotPoints() {
         nodes.push(this);
     })
     
-    // for each point
-    // for (let i = 0; i < data.length; i++){
-        
-    //     // determine num of connections
-    //     var lines =  Math.floor(Math.random() * 2);
-       
-    //     for (let index = 0; index < lines; index++) {
+}
 
-    //         var target = Math.floor(Math.random()*data.length);
-
-    //         svg.selectAll(".line")
-    //         .data(data)
-    //         .enter()
-    //         .append("line")
-    //         .attr("x1", () => projection([data[i].long, data[i].lat])[0])
-    //         .attr("y1", () => projection([data[i].long, data[i].lat])[1])
-    //         .attr("x2", () => projection([data[target].long, data[target].lat])[0])
-    //         .attr("y2", () => projection([data[target].long, data[target].lat])[1])
-    //         .style('stroke', 'blue')
-    //         .style('stroke-width', .5);        }
-    // }
-
-
-    //determine target fr each line
-    //draw line
-    
-    }
-
-
-
-window.onload = function () {
-    // displayMap();
-    // plotPoints();
-};
 
 function adjustRadius(r){
     
-    var minR = 4;
+    var minR = 5;
     var maxR = 15;
 
     var x = 0;
@@ -128,7 +96,8 @@ function adjustRadius(r){
     if(r < minR)
         x = minR
 
-       // console.log(r)
+
+        // return r;//
     return x;
 
 }

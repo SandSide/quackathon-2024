@@ -42,7 +42,7 @@ function infect(currNode){
 
 function calculateMoves(currNode){
 
-    var maxDist = 10;
+    var maxDist = .5;
 
     for (let i = 0; i < nodes.length; i++) {
         
@@ -60,8 +60,6 @@ function calculateMoves(currNode){
 
                 d3.select(nodes[i])
                 .style('fill', 'yellow'); 
-                
-                //drawLine(currData)
             }
 
         }   

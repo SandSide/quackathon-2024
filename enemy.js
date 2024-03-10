@@ -16,7 +16,7 @@ function addEnemy(){
     enemyNodes.push(newEnemy);
 
     d3.select(newEnemy)
-        .style('fill', 'green')
+        .style('fill', '#0984e3')
         .datum(d => {
             d.state = 'enemy';
             return d
@@ -64,14 +64,14 @@ function enemyMove(enemy, target){
     purify(target);
 
     d3.select(enemy)
-        .style('fill', 'blue')
+        .style('fill', '#2d3436')
         .datum(d => {
             d.state = 'normal';
             return d;
         })
 
     d3.select(target)
-        .style('fill', 'green')
+        .style('fill', '#0984e3')
         .datum(d => {
             d.state = 'enemy';
             return d;

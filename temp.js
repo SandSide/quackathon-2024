@@ -26,7 +26,7 @@ function drawLine(a,b){
         .attr("y1", () => projection([a.long, a.lat])[1])
         .attr("x2", () => projection([b.long, b.lat])[0])
         .attr("y2", () => projection([b.long, b.lat])[1])
-        .style('stroke', 'blue')
+        .style('stroke', '#2d3436')
         .style('stroke-width', .5);  
 }
 

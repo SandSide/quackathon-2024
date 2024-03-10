@@ -34,9 +34,9 @@ function showPossibleMoves(moves){
             if (d.state != 'infected' && d.state != 'enemy')
                 return 'yellow';
             else if (d.state == 'enemy')
-                return 'green'
+                return '#0984e3'
             else
-                return 'pink'
+                return '#e84393'
         })
         .on('click', (event) => {
             movePlayer(event.target, moves);
@@ -75,9 +75,9 @@ async function clearOldPossibleMoves(moves){
             .style('fill', d => {
 
                 if(d.state == 'normal')
-                    return 'blue';
+                    return '#2d3436';
                 else if(d.state == 'enemy')
-                    return 'green'
+                    return '#0984e3'
                 else
                     return 'orange'
             })

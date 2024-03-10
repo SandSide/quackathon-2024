@@ -73,7 +73,7 @@ async function plotPoints() {
         .attr('cx', d => projection([d.long, d.lat])[0]) 
         .attr('cy', d => projection([d.long, d.lat])[1]) 
         .attr('r', d => adjustRadius(d.atmNum))
-        .style('fill', 'blue'); 
+        .style('fill', '#2d3436'); 
 
 
     c.each(function(){

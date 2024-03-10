@@ -85,19 +85,18 @@ async function plotPoints() {
 
 function adjustRadius(r){
     
-    var minR = 5;
-    var maxR = 15;
+    var minR = 7;
+    var maxR = 20;
 
     var x = 0;
 
     if(r > maxR)
         x = maxR
-    
-    if(r < minR)
+    else if(r < minR)
         x = minR
+    else
+        x = r;
 
-
-        // return r;//
     return x;
 
 }

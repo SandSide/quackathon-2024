@@ -52,7 +52,7 @@ function showPossibleMoves(moves){
         if (d.state != 'infected')
             return 'yellow'
         else
-            return 'red'
+            return 'pink'
     })
     .on('click', (event) => {
         changeCurrentNode(event.target, moves);

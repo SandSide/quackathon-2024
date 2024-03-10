@@ -30,6 +30,7 @@ async function enemyTurn(){
     enemyNodes.forEach(enemy => {
 
         var possibleMoves = determinePossibleMoves(enemy);
+
         var target = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
 
         if(enemyNodes.includes(target) == false && target != null)

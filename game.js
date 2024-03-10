@@ -10,12 +10,22 @@ window.onload = async () => {
 
 async function init(){
 
-    var startNode = nodes[Math.floor(Math.random() * nodes.length)]
-    movePlayer(startNode, null);
+    var currNode = nodes[Math.floor(Math.random() * nodes.length)]
+    var moves = determinePossibleMoves(currNode);
 
+    d3.select(currNode)
+        .style('fill', 'red')
+
+    d3.select(currNode)
+        .node().scrollIntoView({ behavior: 'smooth', block:'center', inline: 'center' });
+    
     for (let i = 0; i < 10; i++) {
         addEnemy();   
     }
+
+    showPossibleMoves(moves);
+
+
 
 }
 
@@ -44,7 +54,7 @@ async function movePlayer(targetNode, possibleMoves){
     await clearOldPossibleMoves(possibleMoves);
 
     d3.select(targetNode)
-        .style('fill', 'red')
+        .style('fill', 'red')        
     
     if(currNode != null)
         infect(currNode);
@@ -53,6 +63,8 @@ async function movePlayer(targetNode, possibleMoves){
 
     var targetPos = d3.select(currNode);
     targetPos.node().scrollIntoView({ behavior: 'smooth', block:'center', inline: 'center' });
+
+    await enemyTurn();
 
     var possibleMoves = determinePossibleMoves(currNode);
     showPossibleMoves(possibleMoves);
@@ -80,14 +92,13 @@ function infect(node){
 
     var nodeData = d3.select(node).datum();
 
-    if(nodeData.state != 'infected'){
+    if(nodeData.state != 'infected' && nodeData.state != 'enemy'){
 
         d3.select(node)
             .style('fill', d => {
                 d.state = 'infected';
                 return 'orange';
             })
-            .attr('z', -10);
 
         updateScore(nodeData.atmNum);
     }

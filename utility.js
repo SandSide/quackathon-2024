@@ -9,10 +9,10 @@ function determinePossibleMoves(node){
         if (nodes[i] != node && node != null){
 
             var targetData = d3.select(nodes[i]).datum();
-            var currData = d3.select(node).datum();
+            var nodeData = d3.select(node).datum();
 
-            var a = Math.abs(currData.lat - targetData.lat);
-            var b = Math.abs(currData.long - targetData.long);
+            var a = Math.abs(nodeData.lat - targetData.lat);
+            var b = Math.abs(nodeData.long - targetData.long);
 
             var c = Math.sqrt(a*a + b*b)
 

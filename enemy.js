@@ -15,7 +15,7 @@ function addEnemy(){
 
     enemyNodes.push(newEnemy);
 
-    d3.selectAll(enemyNodes)
+    d3.select(newEnemy)
         .style('fill', 'green')
         .datum(d => {
             return {state: 'enemy' };
@@ -27,12 +27,12 @@ async function enemyTurn(){
     var newPos = []
 
     enemyNodes.forEach(enemy => {
-        
-        var possibleMoves = determinePossibleMoves(enemy);
 
+        var possibleMoves = determinePossibleMoves(enemy);
+      
         var target = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
 
-        if(enemyNodes.includes(target) == false)
+        if(enemyNodes.includes(target) == false && target != null)
         {
             console.log("enemy moving");
             enemyMove(enemy, target);

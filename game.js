@@ -5,9 +5,7 @@ window.onload = async () => {
 
     displayMap()
     await plotPoints();
-
     await init();
-
 }
 
 async function init(){
@@ -31,7 +29,6 @@ function determinePossibleMoves(node){
         
         if (nodes[i] != node && node != null){
 
-            //console.log(node)
             var targetData = d3.select(nodes[i]).datum();
             var currData = d3.select(node).datum();
 
@@ -52,17 +49,17 @@ function determinePossibleMoves(node){
 function showPossibleMoves(moves){
     
     d3.selectAll(moves)
-    .style('fill', d => {
-        if (d.state != 'infected' && d.state != 'enemy')
-            return 'yellow';
-        else if (d.state == 'enemy')
-            return 'green'
-        else
-            return 'pink'
-    })
-    .on('click', (event) => {
-        movePlayer(event.target, moves);
-    })
+        .style('fill', d => {
+            if (d.state != 'infected' && d.state != 'enemy')
+                return 'yellow';
+            else if (d.state == 'enemy')
+                return 'green'
+            else
+                return 'pink'
+        })
+        .on('click', (event) => {
+            movePlayer(event.target, moves);
+        })
 }
 
 async function movePlayer(newNode, possibleMoves){
@@ -84,7 +81,7 @@ async function movePlayer(newNode, possibleMoves){
     var targetPos = d3.select(currNode);
     targetPos.node().scrollIntoView({ behavior: 'smooth', block:'center', inline: 'center' });
 
-    await enemyTurn();
+   // await enemyTurn();
 
     var possibleMoves = determinePossibleMoves(currNode);
     showPossibleMoves(possibleMoves);

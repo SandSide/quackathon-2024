@@ -3,7 +3,28 @@ html {
   width: 100%;
 }
 
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #a29bfe;
+  backdrop-filter: blur(10px); /* Add blur effect */
+
+}
+
+#map{
+  /* fill: green; */
+  fill: #55efc4
+}
+
 #canvas {
   background-image: url("istockphoto-1255442357-612x612.jpg");
   background-size: cover;
+}
+
+#score{
+  position:fixed;;
+  font-size: 5rem;
+  top: 0;
+  left:50%;
+  color: white;
 }

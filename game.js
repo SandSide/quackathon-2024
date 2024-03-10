@@ -6,20 +6,24 @@ window.onload = async () => {
     displayMap()
     await plotPoints();
 
+    await init();
+
+}
+
+async function init(){
+
     var startNode = nodes[Math.floor(Math.random() * nodes.length)]
-    changeCurrentNode(startNode, null);
+    movePlayer(startNode, null);
 
     for (let i = 0; i < 10; i++) {
         addEnemy();   
     }
 
-    enemyAction();
 }
-
 
 function determinePossibleMoves(node){
 
-    var maxDist = 1;
+    var maxDist = .75;
 
     var possibleMoves = []
 
@@ -49,45 +53,44 @@ function showPossibleMoves(moves){
     
     d3.selectAll(moves)
     .style('fill', d => {
-        if (d.state != 'infected')
-            return 'yellow'
+        if (d.state != 'infected' && d.state != 'enemy')
+            return 'yellow';
+        else if (d.state == 'enemy')
+            return 'green'
         else
             return 'pink'
     })
     .on('click', (event) => {
-        changeCurrentNode(event.target, moves);
-    }) 
+        movePlayer(event.target, moves);
+    })
 }
 
-function changeCurrentNode(newNode, possibleMoves){
+async function movePlayer(newNode, possibleMoves){
 
-    // Clear  previous
-    
+    // Clear  previous pos
     if(currNode != null)
         possibleMoves.push(currNode)
 
-    clearOldPossibleMoves(possibleMoves);
+    await clearOldPossibleMoves(possibleMoves);
 
     d3.select(newNode)
         .style('fill', 'red')
-        .attr('z', -10);
     
     if(currNode != null)
         infect(currNode);
-
-
-    // update
 
     currNode = newNode;
 
     var targetPos = d3.select(currNode);
     targetPos.node().scrollIntoView({ behavior: 'smooth', block:'center', inline: 'center' });
 
+    await enemyTurn();
+
     var possibleMoves = determinePossibleMoves(currNode);
     showPossibleMoves(possibleMoves);
 }
 
-function clearOldPossibleMoves(moves){
+async function clearOldPossibleMoves(moves){
     if(moves != null){
 
         d3.selectAll(moves)
@@ -95,11 +98,11 @@ function clearOldPossibleMoves(moves){
 
                 if(d.state == 'normal')
                     return 'blue';
+                else if(d.state == 'enemy')
+                    return 'green'
                 else
                     return 'orange'
             })
-            //.attr('r', 5)
-            .attr('z', -10)
             .on('click', null);
     }
 }
@@ -130,7 +133,6 @@ function infect(node){
                 d.state = 'infected';
                 return 'orange';
             })
-           // .attr('r', 5)
             .attr('z', -10);
 
         updateScore(nodeData.atmNum);
@@ -140,6 +142,6 @@ function infect(node){
 
 function updateScore(amount){
     score += amount;
-    console.log('Score: ' + score)
+    // console.log('Score: ' + score)
     document.getElementById('score').innerHTML = "Score: " + score;
 }

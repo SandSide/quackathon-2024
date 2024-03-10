@@ -6,17 +6,17 @@ function addEnemy(){
 
         var newEnemy = nodes[Math.floor(Math.random() * nodes.length)]
 
-        if(newEnemy != currNode && enemyNodes.includes(newEnemy) != true)
+        if(newEnemy != currNode && enemyNodes.includes(newEnemy) != true){
+            enemyNodes.push(newEnemy);
             break;
+        }
     }
 
-    enemyNodes.push(newEnemy);
-    
-    d3.select(newEnemy)
+    d3.selectAll(enemyNodes)
         .style('fill', 'green')
 }
 
-function enemyAction(){
+async function enemyTurn(){
 
     var newPos = []
 
@@ -28,12 +28,10 @@ function enemyAction(){
 
         if(enemyNodes.includes(target) == false)
         {
+            console.log("enemy moving");
             enemyMove(enemy, target);
-
             newPos.push(target);
-
         }
-
     });
 
     enemyNodes = newPos;

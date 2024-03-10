@@ -18,7 +18,8 @@ function addEnemy(){
     d3.select(newEnemy)
         .style('fill', 'green')
         .datum(d => {
-            return {state: 'enemy' };
+            d.state = 'enemy';
+            return d
         })
 }
 
@@ -29,7 +30,6 @@ async function enemyTurn(){
     enemyNodes.forEach(enemy => {
 
         var possibleMoves = determinePossibleMoves(enemy);
-      
         var target = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
 
         if(enemyNodes.includes(target) == false && target != null)
@@ -52,13 +52,15 @@ function enemyMove(enemy, target){
     d3.select(enemy)
         .style('fill', 'blue')
         .datum(d => {
-            return {state: 'normal' };
+            d.state = 'normal';
+            return d;
         })
 
     d3.select(target)
         .style('fill', 'green')
         .datum(d => {
-            return {state: 'enemy' };
+            d.state = 'enemy';
+            return d;
         })
 
 }

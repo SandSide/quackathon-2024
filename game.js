@@ -25,8 +25,6 @@ async function init(){
 
     showPossibleMoves(moves);
 
-
-
 }
 
 function showPossibleMoves(moves){

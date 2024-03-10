@@ -1,6 +1,4 @@
-function determinePossibleMoves(node){
-
-    var maxDist = .75;
+function determinePossibleMoves(node, maxDist){
 
     var possibleMoves = []
 

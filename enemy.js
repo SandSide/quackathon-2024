@@ -29,9 +29,20 @@ async function enemyTurn(){
 
     enemyNodes.forEach(enemy => {
 
-        var possibleMoves = determinePossibleMoves(enemy);
+        var possibleMoves = determinePossibleMoves(enemy, 0.5);
 
-        var target = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
+        var target;
+
+        for (let i = 0; i < possibleMoves.length; i++) {
+
+            if(d3.select(possibleMoves[i]).datum.state == 'infected'){
+                target = possibleMoves[i];
+                break;      
+            }
+        }
+
+        if(target == null)
+            target = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
 
         if(enemyNodes.includes(target) == false && target != null)
         {
@@ -49,6 +60,8 @@ function enemyMove(enemy, target){
     if(target == currNode){
         console.log("Game Over");
     }
+
+    purify(target);
 
     d3.select(enemy)
         .style('fill', 'blue')
@@ -75,11 +88,11 @@ function purify(node){
 
         console.log('purify atm')
 
-        d3.select(node)
-            .style('fill', d => {
-                d.state = 'normal';
-            })
-            .attr('z', -10);
+        // d3.select(node)
+        //     .datum(d => {
+        //         d.state = 'enemy';
+        //         return d;
+        //     })
 
         updateScore(-nodeData.atmNum);
     }

@@ -11,7 +11,7 @@ window.onload = async () => {
 async function init(){
 
     var currNode = nodes[Math.floor(Math.random() * nodes.length)]
-    var moves = determinePossibleMoves(currNode);
+    var moves = determinePossibleMoves(currNode, 0.75);
 
     d3.select(currNode)
         .style('fill', 'red')
@@ -64,7 +64,7 @@ async function movePlayer(targetNode, possibleMoves){
 
     await enemyTurn();
 
-    var possibleMoves = determinePossibleMoves(currNode);
+    var possibleMoves = determinePossibleMoves(currNode, 0.75);
     showPossibleMoves(possibleMoves);
 }
 
@@ -94,8 +94,12 @@ function infect(node){
 
         d3.select(node)
             .style('fill', d => {
-                d.state = 'infected';
+
                 return 'orange';
+            })
+            .datum(d => {
+                d.state = 'infected';
+                return d;
             })
 
         updateScore(nodeData.atmNum);
@@ -105,6 +109,6 @@ function infect(node){
 
 function updateScore(amount){
     score += amount;
-    // console.log('Score: ' + score)
+    console.log('Score: ' + score)
     document.getElementById('score').innerHTML = "Score: " + score;
 }

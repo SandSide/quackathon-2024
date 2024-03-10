@@ -41,9 +41,10 @@ async function transformData(){
         long: data[2]
     }));
 
+   // atmCity[]
 
     // console.log(atmCityArray)
-    return atmCityArray;
+    return atmCityArray.slice(0, 100);
 }
 
 // transformData();

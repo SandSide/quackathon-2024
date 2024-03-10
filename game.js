@@ -8,21 +8,29 @@ window.onload = async () => {
 
     var startNode = nodes[Math.floor(Math.random() * nodes.length)]
     changeCurrentNode(startNode, null);
+
+    for (let i = 0; i < 10; i++) {
+        addEnemy();
+        
+    }
+
+    enemyAction();
 }
 
 
-function determinePossibleMoves(currNode){
+function determinePossibleMoves(node){
 
-    var maxDist = .75;
+    var maxDist = 2;
 
     var possibleMoves = []
 
     for (let i = 0; i < nodes.length; i++) {
         
-        if (nodes[i] != currNode){
+        if (nodes[i] != node && node != null){
 
+            //console.log(node)
             var targetData = d3.select(nodes[i]).datum();
-            var currData = d3.select(currNode).datum();
+            var currData = d3.select(node).datum();
 
             var a = Math.abs(currData.lat - targetData.lat);
             var b = Math.abs(currData.long - targetData.long);
@@ -61,16 +69,17 @@ function changeCurrentNode(newNode, possibleMoves){
 
     d3.select(newNode)
         .style('fill', 'red')
-       // .attr('r', 10)
         .attr('z', -10);
     
     if(currNode != null)
         infect(currNode);
-    
 
-   // if(d3.select(newNode).datum();
 
     currNode = newNode;
+
+
+    enemyAction();
+
     var possibleMoves = determinePossibleMoves(currNode);
     showPossibleMoves(possibleMoves);
 }
@@ -81,7 +90,7 @@ function clearOldPossibleMoves(moves){
         d3.selectAll(moves)
             .style('fill', d => {
 
-                if(d.state != 'infected')
+                if(d.state == 'normal')
                     return 'blue';
                 else
                     return 'orange'
@@ -121,20 +130,13 @@ function infect(node){
            // .attr('r', 5)
             .attr('z', -10);
 
-        updateScore(nodeData);
+        updateScore(nodeData.atmNum);
     }
 
 }
 
-function updateScore(node){
-    score += node.atmNum;
+function updateScore(amount){
+    score += amount;
     console.log('Score: ' + score)
     document.getElementById('score').innerHTML = "Score: " + score;
 }
-
-
-// Determine possible movements
-
-// Choose/ Move to position
-
-// Determine action

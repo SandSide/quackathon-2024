@@ -61,6 +61,8 @@ function showPossibleMoves(moves){
 
 function changeCurrentNode(newNode, possibleMoves){
 
+    // Clear  previous
+    
     if(currNode != null)
         possibleMoves.push(currNode)
 
@@ -74,10 +76,12 @@ function changeCurrentNode(newNode, possibleMoves){
         infect(currNode);
 
 
+    // update
+
     currNode = newNode;
 
-
-    enemyAction();
+    var targetPos = d3.select(currNode);
+    targetPos.node().scrollIntoView({ behavior: 'smooth', block:'center', inline: 'center' });
 
     var possibleMoves = determinePossibleMoves(currNode);
     showPossibleMoves(possibleMoves);

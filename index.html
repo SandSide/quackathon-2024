@@ -14,19 +14,21 @@
 </head>
 
 <body>
-    <div id="overlay"></div>
-    
+    <div id="overlay" style="width: 100vw;">
+        <div id='game-over' class="card text-center" hidden>
+            <div class="card-body">
+                <h5 class="card-title">Game Over!</h5>
+                <p class="card-text">You ended the game with a score of......</p>
+                <h4 id="game-over-score">100</h4>
+            </div>
+        </div>
+    </div>
+
     <div class="fixy">
         <h3 id="score"> Score: </h3>
     </div>
 
-    <div id='game-over' class="card text-center" hidden>
-        <div class="card-body">
-            <h5 class="card-title">Game Over!</h5>
-            <p class="card-text">You ended the game with a score of......</p>
-            <h4 id="game-over-score">100</h4>
-        </div>
-    </div>
+
 
 
 

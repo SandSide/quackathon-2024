@@ -122,3 +122,8 @@ function updateScore(amount){
 
     document.getElementById('score').innerHTML = "Score: " + score;
 }
+
+var element = document.getElementById("game-over");
+element.hidden = false;
+document.getElementById("overlay").style.display = "block";
+document.getElementById("game-over-score").innerHTML = score;
